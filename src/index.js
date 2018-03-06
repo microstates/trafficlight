@@ -10,7 +10,7 @@ import { Intersection } from './models';
 
 let initial = {
   pedestrian: { name: 'Taras', activity: 'standing' },
-  light: { color: 'red' }
+  light: { color: 'red', timer: 5 }
 }
 
 function App() {

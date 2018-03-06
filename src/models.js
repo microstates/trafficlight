@@ -1,5 +1,8 @@
 import { create } from "microstates";
 
+const LONG_TIME = 15;
+const SHORT_TIME = 5;
+
 export class Intersection {
   pedestrian = Person;
   light = TrafficLight;
@@ -40,6 +43,7 @@ export class Person {
 
 export class TrafficLight {
   color = Color;
+  timer = Number;
 
   get isGreen() {
     return this.color instanceof Green;
@@ -54,9 +58,14 @@ export class TrafficLight {
   }
 
   cycle() {
-    let next = this.color.timer.decrement();
-    if (next.state.color.timer <= 0) {
-      return next.color.change();
+    let next = this.timer.decrement();
+    if (next.state.timer <= 0) {
+      let nextColor = next.color.change();
+      if (nextColor.state.isGreen || nextColor.state.isRed) {
+        return nextColor.timer.set(LONG_TIME);
+      } else {
+        return nextColor.timer.set(SHORT_TIME)
+      }
     } else {
       return next;
     }
@@ -113,11 +122,11 @@ class Color {
   static create(value) {
     switch (value) {
       case 'green': 
-        return create(Green, { timer: 15 });
+        return create(Green);
       case 'yellow':
-        return create(Yellow, { timer: 5 });
+        return create(Yellow);
       case 'red':
-        return create(Red, { timer: 15 });
+        return create(Red);
       default:
     }
   }
@@ -125,18 +134,18 @@ class Color {
 
 class Red extends Color {
   change() {
-    return create(Green, { timer: 15 });
+    return create(Green);
   }
 }
 
 class Yellow extends Color {
   change() {
-    return create(Red, { timer: 15 });
+    return create(Red);
   }
 }
 
 class Green extends Color {
   change() {
-    return create(Yellow, { timer: 5 });
+    return create(Yellow);
   }
 }
