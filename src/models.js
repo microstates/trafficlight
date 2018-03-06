@@ -45,6 +45,10 @@ export class TrafficLight {
   color = Color;
   timer = Number;
 
+  get isBlinking() {
+    return this.isGreen && this.timer < 7;
+  }
+
   get isGreen() {
     return this.color instanceof Green;
   }

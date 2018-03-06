@@ -17,7 +17,8 @@ export default function TrafficLight({ light }) {
         'is-active': light.isYellow
       })} />
       <div className={classnames('green', {
-        'is-active': light.isGreen
+        'is-active': light.isGreen,
+        'is-blinking': light.isBlinking
       })} />
     </div>
   );
