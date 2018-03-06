@@ -6,26 +6,37 @@ import "./style.css";
 import Microstates from "@microstates/react";
 import Interval from "react-interval";
 
-import { Intersection } from './models';
+import { Intersection } from "./models";
+
+const TRAFFIC_LIGHT_DEMO = 'traffic-light';
+
 
 let initial = {
-  pedestrian: { name: 'Taras', activity: 'standing' },
-  light: { color: 'red', timer: 5 }
-}
+  pedestrian: { name: "Taras", activity: "standing" },
+  light: { color: "red", timer: 5 }
+};
 
 function App() {
   return (
-    <Microstates type={Intersection} value={initial} onChange={value => console.log(value)}>
-    {intersection => {
-      return (
-        <div>
-          <Interval timeout={1000} enabled={true} callback={intersection.tick}/>
-          <TrafficLights light={intersection.state.light} />
-          <Pedestrian pedestrian={intersection.state.pedestrian} />
-        </div>
-      );
-    }}
-  </Microstates>
+    <Microstates
+      type={Intersection}
+      value={initial}
+    >
+      {intersection => {
+        return (
+          <div>
+            <Interval
+              timeout={1000}
+              enabled={true}
+              callback={intersection.tick}
+            />
+            <TrafficLights light={intersection.state.light} />
+            <Pedestrian pedestrian={intersection.state.pedestrian} />
+            <div className="footer">timer: {intersection.state.light.timer}</div>
+          </div>
+        );
+      }}
+    </Microstates>
   );
 }
 
