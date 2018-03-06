@@ -8,9 +8,6 @@ import Interval from "react-interval";
 
 import { Intersection } from "./models";
 
-const TRAFFIC_LIGHT_DEMO = 'traffic-light';
-
-
 let initial = {
   pedestrian: { name: "Taras", activity: "standing" },
   light: { color: "red", timer: 5 }
