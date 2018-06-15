@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import TrafficLights from "./traffic-lights";
 import Pedestrian from "./pedestrian";
 import "./style.css";
-import Microstates from "@microstates/react";
+import State from "@microstates/react";
 import Interval from "react-interval";
 
 import { Intersection } from "./models";
@@ -15,7 +15,7 @@ let initial = {
 
 function App() {
   return (
-    <Microstates
+    <State
       type={Intersection}
       value={initial}
     >
@@ -25,15 +25,15 @@ function App() {
             <Interval
               timeout={1000}
               enabled={true}
-              callback={intersection.tick}
+              callback={() => intersection.tick()}
             />
-            <TrafficLights light={intersection.state.light} />
-            <Pedestrian pedestrian={intersection.state.pedestrian} />
-            <div className="footer">timer: {intersection.state.light.timer}</div>
+            <TrafficLights light={intersection.light.state} />
+            <Pedestrian pedestrian={intersection.pedestrian.state} />
+            <div className="footer">timer: {intersection.light.timer.state}</div>
           </div>
         );
       }}
-    </Microstates>
+    </State>
   );
 }
 

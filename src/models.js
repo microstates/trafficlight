@@ -77,79 +77,81 @@ export class TrafficLight {
 }
 
 class Activity {
-  static create(value) {
+  initialize(value) {
     switch(value) {
       case 'standing':
-        return create(Standing);
+        return create(Standing, {});
       case 'walking':
-        return create(Walking);
+        return create(Walking, {});
       case 'running':
-        return create(Running);
+        return create(Running, {});
       default:
+        return this;
     }
   }
 }
 
 class Walking extends Activity {
   stop() {
-    return create(Standing);
+    return create(Standing, {});
   }
 
   run() {
-    return create(Running);
+    return create(Running, {});
   }
 }
 
 class Standing extends Activity {
   walk() {
-    return create(Walking);
+    return create(Walking, {});
   }
 
   run() {
-    return create(Running);
+    return create(Running, {});
   }
 }
 
 class Running extends Activity {
   stop() {
-    return create(Standing);
+    return create(Standing, {});
   }
 
   walk() {
-    return create(Walking);
+    return create(Walking, {});
   }
 }
 
 class Color {
   timer = Number; 
 
-  static create(value) {
+  initialize(value) {
     switch (value) {
       case 'green': 
-        return create(Green);
+        return create(Green, {});
       case 'yellow':
-        return create(Yellow);
+        return create(Yellow, {});
       case 'red':
-        return create(Red);
+        return create(Red, {});
       default:
+        return this;
     }
   }
 }
 
 class Red extends Color {
   change() {
-    return create(Green);
+    return create(Green, {});
   }
 }
 
 class Yellow extends Color {
   change() {
-    return create(Red);
+    return create(Red, {});
   }
 }
 
 class Green extends Color {
   change() {
-    return create(Yellow);
+    return create(Yellow, {});
   }
 }
