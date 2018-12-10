@@ -1,40 +1,38 @@
 import React from "react";
 import { render } from "react-dom";
-import TrafficLights from "./traffic-lights";
-import Pedestrian from "./pedestrian";
-import "./style.css";
-import State from "@microstates/react";
 import Interval from "react-interval";
 
-import { Intersection } from "./models";
+import Intersection from "./states/intersection";
+import TrafficLight from "./components/traffic-light";
+import Pedestrian from "./components/pedestrian";
+
+import { Store, create } from "microstates";
+
+import "./style.css";
 
 let initial = {
   pedestrian: { name: "Taras", activity: "standing" },
-  light: { color: "red", timer: 5 }
+  light: { color: "red" }
 };
 
-function App() {
-  return (
-    <State
-      type={Intersection}
-      value={initial}
-    >
-      {intersection => {
-        return (
-          <div>
-            <Interval
-              timeout={1000}
-              enabled={true}
-              callback={() => intersection.tick()}
-            />
-            <TrafficLights light={intersection.light.state} />
-            <Pedestrian pedestrian={intersection.pedestrian.state} />
-            <div className="footer">timer: {intersection.light.timer.state}</div>
-          </div>
-        );
-      }}
-    </State>
-  );
-}
+class App extends React.Component {
+  state = {
+    $: Store(create(Intersection, initial), $ => this.setState({ $ }))
+  };
 
+  render() {
+    let intersection = this.state.$;
+
+    return (
+      <div>
+        <Interval enabled timeout={1000} callback={intersection.tick} />
+        <TrafficLight light={intersection.light} />
+        <Pedestrian pedestrian={intersection.pedestrian} />
+        <div className="footer">
+          timer: {intersection.light.color.timer.state}
+        </div>
+      </div>
+    );
+  }
+}
 render(<App />, document.getElementById("root"));
