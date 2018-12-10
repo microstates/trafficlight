@@ -1,10 +1,5 @@
 import { create } from 'microstates';
 
-export default class Person {
-  activity = create(Activity, 'standing');
-  name = String;
-}
-
 class Activity {
   initialize(value) {
     switch(value) {
@@ -72,4 +67,9 @@ class Running extends Activity {
   walk() {
     return this.set('walking');
   }
+}
+
+export default class Person {
+  activity = create(Activity, 'standing');
+  name = String;
 }

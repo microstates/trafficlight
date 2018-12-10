@@ -1,11 +1,14 @@
+import TrafficLight from './traffic-light';
+import Person from './person';
 
-
-export class Intersection {
+export default class Intersection {
   pedestrian = Person;
   light = TrafficLight;
 
   tick() {
-    let { light, pedestrian }  = this.light.color.cycle();
+    let next  = this.light.cycle();
+
+    let { light, pedestrian } = next;
 
     if (light.isGreen && !pedestrian.isWalking) {
       return next.pedestrian.activity.walk();

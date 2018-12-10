@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import State from '../states/traffic-light';
 
-export default function Component({ light }) {
+export default function TrafficLight({ light }) {
   return (
     <div className="trafficlight">
       <div className="protector" />

@@ -29,7 +29,7 @@ class App extends React.Component {
         <TrafficLight light={intersection.light} />
         <Pedestrian pedestrian={intersection.pedestrian} />
         <div className="footer">
-          timer: {intersection.light.color.timer.state}
+          timer: {intersection.light.timer.state}
         </div>
       </div>
     );
