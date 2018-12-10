@@ -5,6 +5,43 @@ import TrafficLight, { Color } from './traffic-light';
 describe('Traffic Light State', () => {
   let light;
 
+  describe('cycle transition', () => {
+    describe('from green', () => {
+      beforeEach(() => {
+        light = create(TrafficLight, { color: 'green', timer: 1 }).cycle();
+      });
+      it('transitions to yellow', () => {
+        expect(light.color.isYellow).toBe(true);
+      });
+      it('gets a new timer of 5 seconds', () => {
+        expect(light.timer.state).toBe(5);
+      });
+    });
+    
+    describe('from red', () => {
+      beforeEach(() => {
+        light = create(TrafficLight, { color: 'red', timer: 1 }).cycle();
+      });
+      it('transitions to green', () => {
+        expect(light.color.isGreen).toBe(true);
+      });
+      it('gets a new timer of 15 seconds', () => {
+        expect(light.timer.state).toBe(15);
+      });
+    });
+    describe('from yellow', () => {
+      beforeEach(() => {
+        light = create(TrafficLight, { color: 'yellow', timer: 1 }).cycle();
+      });
+      it('transitions to red', () => {
+        expect(light.color.isRed).toBe(true);
+      });
+      it('gets a new timer of 15 seconds', () => {
+        expect(light.timer.state).toBe(15);
+      });
+    });
+  });
+
   describe('without value', () => {
     beforeEach(() => {
       light = create(TrafficLight)
@@ -62,7 +99,6 @@ describe('Traffic Light State', () => {
       });
     });
   });
-
 
   describe('Color state', () => {
     let color;
