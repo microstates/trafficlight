@@ -1,7 +1,7 @@
 import { create } from 'microstates';
 
 export default class Person {
-  activity = Activity;
+  activity = create(Activity, 'standing');
   name = String;
 }
 
@@ -14,8 +14,6 @@ class Activity {
         return create(Walking, this);
       case 'standing':
         return create(Standing, this);
-      case undefined:
-        return this.set('standing');
       default:
         return this;
     }

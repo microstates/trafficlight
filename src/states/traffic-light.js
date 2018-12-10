@@ -4,7 +4,15 @@ const LONG_TIME = 15;
 const SHORT_TIME = 5;
 
 export default class TrafficLight {
-  color = Color;
+  color = create(Color, 'red');
+  timer = create(Number, LONG_TIME);
+
+  initialize(value = {}) {
+    if (value.color === 'yellow' && value.timer === undefined) {
+      return this.timer.set(SHORT_TIME);
+    }
+    return this;
+  }
 
   get isBlinking() {
     return this.color.isGreen && this.color.timer.state < 7;
@@ -12,28 +20,16 @@ export default class TrafficLight {
 }
 
 export class Color {
-  timer = create(Number, LONG_TIME)
-
   initialize(value) {
     switch (value) {
       case 'green': 
-        return create(Green);
+        return create(Green, this);
       case 'yellow':
-        return create(Yellow);
+        return create(Yellow, this);
       case 'red':
-        return create(Red);
+        return create(Red, this);
       default:
         return this;
-    }
-  }
-
-  cycle() {
-    let next = this.timer.decrement();
-
-    if (next.timer.state === 0) {
-      return this.change();
-    } else {
-      return next;
     }
   }
 }
@@ -43,20 +39,26 @@ class Red extends Color {
     return true;
   }
 
+  initialize(value) {
+    return super.initialize(value);
+  }
+
   change() {
-    return create(Green);
+    return this.set('green');
   }
 }
 
 class Yellow extends Color {
-  timer = create(Number, SHORT_TIME)
-
   get isYellow() {
     return true;
   }
 
+  initialize(value) {
+    return super.initialize(value);
+  }
+
   change() {
-    return create(Red);
+    return this.set('red');
   }
 }
 
@@ -64,8 +66,12 @@ class Green extends Color {
   get isGreen() {
     return true;
   }
+
+  initialize(value) {
+    return super.initialize(value);
+  }
   
   change() {
-    return create(Yellow);
+    return this.set('yellow');
   }
 }
