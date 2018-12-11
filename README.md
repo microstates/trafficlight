@@ -2,7 +2,7 @@
 
 Checkout [Microstates.js Project](https://github.com/microstates/microstates.js) if you haven't already.
 
-[**Demo** on CodeSandbox](https://codesandbox.io/s/github/microstates/trafficlight)
+[**Demo on CodeSandbox**](https://codesandbox.io/s/github/microstates/trafficlight)
 
 This application is an example of using Microstates to build State Machines. This is one of the popular examples of state machines but it adds a small Microstaty twist. It shows how you an compose state machines and transition state one state machine based on another. 
 
