@@ -13,11 +13,11 @@ export default class Intersection {
       pedestrian: { activity }
     } = next;
 
-    if (color.isGreen && !activity.isWalking) {
+    if (color.isGreen) {
       return activity.walk();
-    } else if (color.isYellow && !activity.isRunning) {
+    } else if (color.isYellow) {
       return activity.run();
-    } else if (color.isRed && !activity.isStanding) {
+    } else if (color.isRed) {
       return activity.stop();
     }
 

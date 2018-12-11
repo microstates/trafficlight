@@ -24,6 +24,10 @@ class Walking extends Activity {
     return super.initialize(value);
   }
 
+  walk() {
+    return this;
+  }
+
   stop() {
     return this.set('standing');
   }
@@ -42,6 +46,10 @@ class Standing extends Activity {
     return super.initialize(value);
   }
 
+  stop() {
+    return this;
+  }
+
   walk() {
     return this.set('walking');
   }
@@ -58,6 +66,10 @@ class Running extends Activity {
 
   initialize(value) {
     return super.initialize(value);
+  }
+
+  run() {
+    return this;
   }
 
   stop() {
