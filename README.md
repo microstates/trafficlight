@@ -2,6 +2,8 @@
 
 Checkout [Microstates.js Project](https://github.com/microstates/microstates.js) if you haven't already.
 
+[**Demo** on CodeSandbox](https://codesandbox.io/s/github/microstates/trafficlight)
+
 This application is an example of using Microstates to build State Machines. This is one of the popular examples of state machines but it adds a small Microstaty twist. It shows how you an compose state machines and transition state one state machine based on another. 
 
 In this example, has [TrafficLight state machine](https://github.com/microstates/trafficlight/blob/master/src/states/traffic-light.js) and a [Person state machine](https://github.com/microstates/trafficlight/blob/master/src/states/person.js). When the traffic light is red, the pedastrian stands and waits, runs when it's yellow and walks when it's green. Both state machines are composed into an [Intersection state machine](https://github.com/microstates/trafficlight/blob/master/src/states/intersection.js).
