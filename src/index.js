@@ -6,7 +6,7 @@ import Intersection from "./states/intersection";
 import TrafficLight from "./components/traffic-light";
 import Pedestrian from "./components/pedestrian";
 
-import { Store, create } from "microstates";
+import { Store, create, valueOf } from "microstates";
 
 import "./style.css";
 
@@ -30,7 +30,7 @@ class App extends React.Component {
           <TrafficLight light={intersection.light} />
           <Pedestrian pedestrian={intersection.pedestrian} />
         </main>
-        <footer>Time left: {intersection.light.timer.state}</footer>{" "}
+        <footer>Value: {JSON.stringify(valueOf(intersection), undefined, 2)}</footer>{" "}
       </>
     );
   }
