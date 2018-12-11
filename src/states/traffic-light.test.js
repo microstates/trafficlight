@@ -1,4 +1,3 @@
-import 'jest';
 import { create, valueOf } from 'microstates';
 import TrafficLight, { Color } from './traffic-light';
 
