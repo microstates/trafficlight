@@ -1,21 +1,32 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import Person from '../states/person'
+import Person from "../states/person";
 
-export default function Pedestrian ({ pedestrian }) {
-  if (pedestrian.activity.isWalking) {
-    return <img className="pedestrian" src="https://media.giphy.com/media/QpWDP1YMziaQw/giphy.gif" alt="walking" />;
-  }
-  if (pedestrian.activity.isStanding) {
-    return <img className="pedestrian" src="https://media.giphy.com/media/ghhynvHS4NbDG/giphy.gif" alt="standing"  />;
-  }
-  if (pedestrian.activity.isRunning) {
-    return <img className="pedestrian" src="https://media.giphy.com/media/7kn27lnYSAE9O/giphy.gif" alt="running" />;
-  }
-  return null;
+export default function Pedestrian({ pedestrian: { activity } }) {
+
+  let id = activity.isWalking
+    ? "QpWDP1YMziaQw"
+    : activity.isStanding
+    ? "ghhynvHS4NbDG"
+    : activity.isRunning
+    ? "3D0tSwNjVK56z6okJp"
+    : null;
+
+  return (
+    <div
+      className="pedestrian"
+      style={{
+        margin: "40px",
+        backgroundPosition: "0 0",
+        backgroundSize: "contain",
+        backgroundImage: `url(https://media.giphy.com/media/${id}/giphy.gif)`,
+        backgroundRepeat: "no-repeat"
+      }}
+    />
+  );
 }
 
 Pedestrian.propTypes = {
   pedestrian: PropTypes.instanceOf(Person)
-}
+};
