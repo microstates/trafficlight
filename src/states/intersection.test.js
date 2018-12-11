@@ -1,4 +1,3 @@
-import "jest";
 import { create } from "microstates";
 import Intersection from "./intersection";
 

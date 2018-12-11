@@ -1,4 +1,3 @@
-import 'jest';
 import Person from './person';
 import { create, valueOf } from 'microstates';
 
