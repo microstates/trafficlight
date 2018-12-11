@@ -24,14 +24,14 @@ class App extends React.Component {
     let intersection = this.state.$;
 
     return (
-      <div>
+      <>
         <Interval enabled timeout={1000} callback={intersection.tick} />
-        <TrafficLight light={intersection.light} />
-        <Pedestrian pedestrian={intersection.pedestrian} />
-        <div className="footer">
-          timer: {intersection.light.timer.state}
-        </div>
-      </div>
+        <main>
+          <TrafficLight light={intersection.light} />
+          <Pedestrian pedestrian={intersection.pedestrian} />
+        </main>
+        <footer>Time left: {intersection.light.timer.state}</footer>{" "}
+      </>
     );
   }
 }
