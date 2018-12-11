@@ -12,7 +12,7 @@ import "./style.css";
 
 let initial = {
   pedestrian: { name: "Taras", activity: "standing" },
-  light: { color: "red" }
+  light: { color: "red", timer: 3 }
 };
 
 class App extends React.Component {
