@@ -1,4 +1,4 @@
-# Traffic Light State Machin with Microstates
+# Traffic Light State Machine with Microstates
 
 Checkout [Microstates.js Project](https://github.com/microstates/microstates.js) if you haven't already.
 
