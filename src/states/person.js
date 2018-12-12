@@ -71,5 +71,4 @@ class Running extends Activity {
 
 export default class Person {
   activity = create(Activity, 'standing');
-  name = String;
 }
