@@ -11,7 +11,7 @@ import { Store, create, valueOf } from "microstates";
 import "./style.css";
 
 let initial = {
-  pedestrian: { name: "Taras", activity: "standing" },
+  pedestrian: { activity: "standing" },
   light: { color: "red", timer: 3 }
 };
 
@@ -30,7 +30,7 @@ class App extends React.Component {
           <TrafficLight light={intersection.light} />
           <Pedestrian pedestrian={intersection.pedestrian} />
         </main>
-        <footer>Value: {JSON.stringify(valueOf(intersection), undefined, 2)}</footer>{" "}
+        <footer>{JSON.stringify(valueOf(intersection), undefined, 2)}</footer>
       </>
     );
   }
