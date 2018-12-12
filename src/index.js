@@ -10,14 +10,14 @@ import { Store, create, valueOf } from "microstates";
 
 import "./style.css";
 
-let initial = {
+let initial = create(Intersection, {
   pedestrian: { activity: "standing" },
   light: { color: "red", timer: 3 }
-};
+});
 
 class App extends React.Component {
   state = {
-    $: Store(create(Intersection, initial), $ => this.setState({ $ }))
+    $: Store(initial, $ => this.setState({ $ }))
   };
 
   render() {
@@ -30,7 +30,9 @@ class App extends React.Component {
           <TrafficLight light={intersection.light} />
           <Pedestrian pedestrian={intersection.pedestrian} />
         </main>
-        <footer>{JSON.stringify(valueOf(intersection), undefined, 2)}</footer>
+        <footer>
+          {JSON.stringify(valueOf(intersection), undefined, 2)}
+        </footer>
       </>
     );
   }

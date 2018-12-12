@@ -23,6 +23,26 @@ main {
   display: flex;
   flex-grow: 1;
   padding: 40px;
+  margin: 40px;
+  background-position: 0;
+  background-size: "contain";
+  background-repeat: "no-repeat";
+}
+
+.pedestrian.is-walking {
+  background-image: url(https://media.giphy.com/media/QpWDP1YMziaQw/giphy.gif);
+}
+
+.pedestrian.is-standing {
+  background-image: url(https://media.giphy.com/media/ghhynvHS4NbDG/giphy.gif);
+}
+
+.pedestrian.is-running {
+  background-image: url(https://media.giphy.com/media/3D0tSwNjVK56z6okJp/giphy.gif);
+}
+
+.pedestrian img {
+  display: none;
 }
 
 footer {

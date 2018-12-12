@@ -6,6 +6,8 @@
   "homepage": "https://codesandbox.io/s/new",
   "main": "src/index.js",
   "dependencies": {
+    "@bigtest/interactor": "0.9.1",
+    "@bigtest/react": "0.1.2",
     "classnames": "2.2.6",
     "microstates": "0.12.2",
     "prop-types": "15.6.2",
