@@ -4,3 +4,13 @@ node_js:
   - "10"
   - "9"
   - "8"
+  - "6"
+
+jobs:
+  include:
+    - stage: Coverage Report
+      node_js: "10"
+      script: yarn coverage && yarn coveralls
+
+# Allow Travis tests to run in containers.
+sudo: false
