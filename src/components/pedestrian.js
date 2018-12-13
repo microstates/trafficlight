@@ -1,11 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { valueOf } from "microstates";
 
 import Person from "../states/person";
 
 export default function Pedestrian({ pedestrian }) {
-  let activity = valueOf(pedestrian.activity);
+  
+  let activity = pedestrian.activity.isWalking
+    ? "walking"
+    : pedestrian.activity.isRunning
+    ? "running"
+    : pedestrian.activity.isStanding
+    ? "standing"
+    : null;
 
   return (
     <div className={`pedestrian is-${activity}`}>

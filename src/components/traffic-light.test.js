@@ -12,6 +12,7 @@ export const TrafficLightInteractor = Interactor.extend(
     isRed = hasClass(".red", "is-active");
     isYellow = hasClass(".yellow", "is-active");
     isGreen = hasClass(".green", "is-active");
+    isBlinking = hasClass(".green", 'is-blinking');
   }
 );
 
@@ -37,5 +38,12 @@ describe('<TrafficLight />', () => {
     await mount(() => <TrafficLight light={light} />);
 
     expect(interactor.isYellow).toBe(true);
+  });
+
+  it('is green', async () => {  
+    let light = create(State, { color: 'green', timer: 6 });
+    await mount(() => <TrafficLight light={light} />);
+
+    expect(interactor.isBlinking).toBe(true);
   });
 });

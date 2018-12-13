@@ -6,6 +6,7 @@
   "homepage": "https://codesandbox.io/s/new",
   "main": "src/index.js",
   "dependencies": {
+    "@bigtest/convergence": "1.1.1",
     "@bigtest/interactor": "0.9.1",
     "@bigtest/react": "0.1.2",
     "classnames": "2.2.6",
@@ -21,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --env=jsdom --coverage"
   },
   "browserslist": [
     ">0.2%",

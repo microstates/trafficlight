@@ -8,7 +8,7 @@ describe('Person state', () => {
 
       let person;
       beforeEach(() => {
-        person = create(Person);
+        person = create(Person, { activity: 'standing'});
       });
   
       it('initializes to standing without initial value', () => {
