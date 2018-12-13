@@ -6,7 +6,7 @@ import { create } from "microstates";
 import Pedestrian from "./pedestrian";
 import Person from "../states/person";
 
-const PedestrianInteractor = Interactor.extend(
+export const PedestrianInteractor = Interactor.extend(
   class {
     static defaultScope = ".pedestrian";
     alt = property("img", "alt");

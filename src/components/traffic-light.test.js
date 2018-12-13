@@ -6,7 +6,7 @@ import { create } from "microstates";
 import State from '../states/traffic-light';
 import TrafficLight from './traffic-light';
 
-const TrafficLightInteractor = Interactor.extend(
+export const TrafficLightInteractor = Interactor.extend(
   class {
     static defaultScope = ".trafficlight";
     isRed = hasClass(".red", "is-active");
