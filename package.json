@@ -5,7 +5,12 @@
   "keywords": [],
   "homepage": "https://codesandbox.io/s/new",
   "main": "src/index.js",
+  "license": "MIT",
   "dependencies": {
+    "@bigtest/convergence": "1.1.1",
+    "@bigtest/interactor": "0.9.1",
+    "@bigtest/react": "0.1.2",
+    "coveralls": "3.0.2",
     "classnames": "2.2.6",
     "microstates": "0.12.2",
     "prop-types": "15.6.2",
@@ -19,12 +24,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --env=jsdom --coverage",
+    "coveralls": "yarn coverage && cat ./coverage/lcov.info | coveralls"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ]
+  }
 }

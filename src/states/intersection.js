@@ -5,22 +5,29 @@ export default class Intersection {
   pedestrian = Person;
   light = TrafficLight;
 
-  tick() {
-    let next = this.light.cycle();
+  initialize() {
+    return this.instructPedestrian();
+  }
+
+  instructPedestrian() {
 
     let {
       light: { color },
       pedestrian: { activity }
-    } = next;
+    } = this;
 
-    if (color.isGreen && !activity.isWalking) {
+    if (color.isGreen) {
       return activity.walk();
-    } else if (color.isYellow && !activity.isRunning) {
-      return activity.run();
-    } else if (color.isRed && !activity.isStanding) {
-      return activity.stop();
     }
+    
+    if (color.isYellow) {
+      return activity.run();
+    }
+    
+    return activity.stop();
+  }
 
-    return next;
+  tick() {
+    return this.light.cycle().instructPedestrian();
   }
 }

@@ -13,6 +13,18 @@ class Activity {
         return this;
     }
   }
+
+  stop() {
+    return this.set('standing');
+  }
+
+  run() {
+    return this.set('running');
+  }
+
+  walk() {
+    return this.set('walking');
+  }
 }
 
 class Walking extends Activity {
@@ -22,14 +34,6 @@ class Walking extends Activity {
 
   initialize(value) {
     return super.initialize(value);
-  }
-
-  stop() {
-    return this.set('standing');
-  }
-
-  run() {
-    return this.set('running');
   }
 }
 
@@ -41,14 +45,6 @@ class Standing extends Activity {
   initialize(value) {
     return super.initialize(value);
   }
-
-  walk() {
-    return this.set('walking');
-  }
-
-  run() {
-    return this.set('running');
-  }
 }
 
 class Running extends Activity {
@@ -59,16 +55,8 @@ class Running extends Activity {
   initialize(value) {
     return super.initialize(value);
   }
-
-  stop() {
-    return this.set('standing');
-  }
-
-  walk() {
-    return this.set('walking');
-  }
 }
 
 export default class Person {
-  activity = create(Activity, 'standing');
+  activity = Activity;
 }

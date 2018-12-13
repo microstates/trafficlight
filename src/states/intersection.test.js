@@ -2,15 +2,15 @@ import { create } from "microstates";
 import Intersection from "./intersection";
 
 describe("Intersection State", () => {
-  describe("Standing pedestrian on green", () => {
+  describe("Walking pedestrian on green", () => {
     let intersection;
     beforeEach(() => {
       intersection = create(Intersection, {
         light: { color: "green", timer: 3 }
       });
     });
-    it("has pedestrian standing", () => {
-      expect(intersection.pedestrian.activity.isStanding).toBe(true);
+    it("has pedestrian walking", () => {
+      expect(intersection.pedestrian.activity.isWalking).toBe(true);
     });
     it('has timer at 3', () => {
       expect(intersection.light.timer.state).toBe(3);
