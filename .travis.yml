@@ -1,16 +1,5 @@
 language: node_js
 
-node_js:
-  - "10"
-  - "9"
-  - "8"
-  - "6"
+node_js: "10"
 
-jobs:
-  include:
-    - stage: Coverage Report
-      node_js: "10"
-      script: yarn coverage && yarn coveralls
-
-# Allow Travis tests to run in containers.
-sudo: false
+script: yarn coveralls
