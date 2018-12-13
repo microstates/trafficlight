@@ -24,9 +24,9 @@ main {
   flex-grow: 1;
   padding: 40px;
   margin: 40px;
-  background-position: 0;
-  background-size: "contain";
-  background-repeat: "no-repeat";
+  background-position: 0 0;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .pedestrian.is-walking {

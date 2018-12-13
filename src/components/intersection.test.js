@@ -10,7 +10,7 @@ import IntersectionState from "../states/intersection";
 import { PedestrianInteractor } from "./pedestrian.test";
 import { TrafficLightInteractor } from "./traffic-light.test";
 
-const IntersectionInteractor = Interactor.extend(
+export const IntersectionInteractor = Interactor.extend(
   class {
     static defaultScope = "main";
     light = new TrafficLightInteractor();

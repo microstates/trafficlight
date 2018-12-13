@@ -1,16 +1,14 @@
 import React from 'react';
 import { Store, create } from "microstates";
 
-import Intersection from "../states/intersection";
-
-const initial = create(Intersection, {
-  pedestrian: { activity: "standing" },
-  light: { color: "red", timer: 1 }
-});
+import Intersection from "./intersection";
+import IntersectionState from '../states/intersection';
 
 export default class App extends React.Component {
-  defaultProps = {
-    initial
+  static defaultProps = {
+    initial: create(IntersectionState, {
+      light: { color: "red", timer: 1 }
+    })
   }
 
   state = {
