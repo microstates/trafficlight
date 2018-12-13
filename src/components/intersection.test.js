@@ -1,7 +1,6 @@
 import React from "react";
 import { mount } from "@bigtest/react";
 import Interactor from "@bigtest/interactor";
-import { when } from '@bigtest/convergence';
 import { create, Store } from "microstates";
 
 import Intersection from "./intersection";
@@ -45,7 +44,7 @@ describe("<Intersection />", () => {
     expect(intersection.light.isBlinking).toBe(true);
     expect(intersection.pedestrian.isWalking).toBe(true);
 
-    await when(() => intersection.light.isYellow);
+    await intersection.when(() => intersection.light.isYellow);
 
     expect(intersection.pedestrian.isStanding).toBe(false);
     expect(intersection.light.isBlinking).toBe(false);
@@ -62,7 +61,7 @@ describe("<Intersection />", () => {
     expect(intersection.light.isYellow).toBe(true);
     expect(intersection.pedestrian.isRunning).toBe(true);
 
-    await when(() => intersection.light.isRed);
+    await intersection.when(() => intersection.light.isRed);
 
     expect(intersection.light.isRed).toBe(true);
     expect(intersection.pedestrian.isRunning).toBe(false);
@@ -79,7 +78,7 @@ describe("<Intersection />", () => {
     expect(intersection.light.isRed).toBe(true);
     expect(intersection.pedestrian.isStanding).toBe(true);
 
-    await when(() => intersection.light.isGreen);
+    await intersection.when(() => intersection.light.isGreen);
 
     expect(intersection.light.isRed).toBe(false);
     expect(intersection.light.isGreen).toBe(true);
