@@ -1,71 +1,35 @@
 import { create } from "microstates";
 
+import Union from './union';
+
 const LONG_TIME = 15;
 const SHORT_TIME = 5;
 
-export class Color {
-  initialize(value) {
-    switch (value) {
-      case 'green': 
-        return create(Green, this);
-      case 'yellow':
-        return create(Yellow, this);
-      case 'red':
-        return create(Red, this);
-      default:
-        return this;
+
+export const Color = Union({
+  Red: Color => class extends Color {
+    change() {
+      return Color.Green.create();
+    }
+  },
+  Yellow: Color => class extends Color {
+    change() {
+      return Color.Red.create();
+    }
+  },
+  Green: Color => class extends Color {
+    change() {
+      return Color.Yellow.create();
     }
   }
-}
-
-class Red extends Color {
-  get isRed() {
-    return true;
-  }
-
-  initialize(value) {
-    return super.initialize(value);
-  }
-
-  change() {
-    return this.set('green');
-  }
-}
-
-class Yellow extends Color {
-  get isYellow() {
-    return true;
-  }
-
-  initialize(value) {
-    return super.initialize(value);
-  }
-
-  change() {
-    return this.set('red');
-  }
-}
-
-class Green extends Color {
-  get isGreen() {
-    return true;
-  }
-
-  initialize(value) {
-    return super.initialize(value);
-  }
-  
-  change() {
-    return this.set('yellow');
-  }
-}
+});
 
 export default class TrafficLight {
-  color = create(Color, 'red');
+  color = Color.Red.create();
   timer = create(Number, LONG_TIME);
 
   initialize(value = {}) {
-    if (value.color === 'yellow' && value.timer === undefined) {
+    if (this.color.isYellow && value.timer === undefined) {
       return this.timer.set(SHORT_TIME);
     }
     return this;
@@ -78,7 +42,7 @@ export default class TrafficLight {
   cycle() {
     let next = this.timer.decrement();
     if (next.timer.state <= 0) {
-      // when the time expired, change the color      
+      // when the time expired, change the color
       let changed = next.color.change();
       if (changed.color.isYellow) {
         // yellow only runs for 5 seconds

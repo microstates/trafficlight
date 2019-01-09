@@ -35,7 +35,7 @@ describe("<Intersection />", () => {
 
   it("goes from green to yellow", async () => {
     let state = create(IntersectionState, {
-      light: { color: 'green', timer: 1 }
+      light: { color: {type: 'Green' }, timer: 1 }
     });
 
     await mountState(state, $ => <Intersection intersection={$} />);
@@ -53,11 +53,11 @@ describe("<Intersection />", () => {
 
   it('goes from yellow to red', async () => {
     let state = create(IntersectionState, {
-      light: { color: 'yellow', timer: 1 }
+      light: { color: { type: 'Yellow' }, timer: 1 }
     });
 
     await mountState(state, $ => <Intersection intersection={$} />);
-    
+
     expect(intersection.light.isYellow).toBe(true);
     expect(intersection.pedestrian.isRunning).toBe(true);
 
@@ -70,7 +70,7 @@ describe("<Intersection />", () => {
 
   it('goes from red to green', async () => {
     let state = create(IntersectionState, {
-      light: { color: 'red', timer: 1 }
+      light: { color: { type: 'Red' }, timer: 1 }
     });
 
     await mountState(state, $ => <Intersection intersection={$} />);
