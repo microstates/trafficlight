@@ -1,12 +1,11 @@
-import { create, valueOf } from 'microstates';
+import { create, valueOf, Primitive } from 'microstates';
 
-export default function Union(members) {
+export default function Union(members, Base = Object) {
   let types = Object.keys(members);
 
-  let UnionType = class {
-    get type() {
-      return valueOf(this).type;
-    }
+  let UnionType = class extends Base {
+
+    type = TypeId(types);
 
     initialize(value) {
       let { type } = value == null ? {} : value;
@@ -57,6 +56,24 @@ export default function Union(members) {
   return UnionType;
 }
 
+
+function TypeId(types) {
+
+  class TypeId extends Primitive {}
+
+  types.forEach(type => {
+    Object.defineProperty(TypeId.prototype, `to${type}`, {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value() {
+        return this.set(type);
+      }
+    });
+  });
+
+  return TypeId;
+}
 
 function assert(condition, message) {
   if (!condition) {

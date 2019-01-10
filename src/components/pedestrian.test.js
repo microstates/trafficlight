@@ -20,7 +20,7 @@ describe("<Pedestrian />", () => {
   let pedestrian = new PedestrianInteractor();
 
   it("is standing", async () => {
-    let person = create(Person, { activity: "standing" });
+    let person = create(Person).activity.stop();
 
     await mount(() => (
       <Pedestrian pedestrian={person} />
@@ -31,7 +31,7 @@ describe("<Pedestrian />", () => {
   });
 
   it("is running", async() => {
-    let person = create(Person, { activity: "running" });
+    let person = create(Person).activity.run();
 
     await mount(() => (
       <Pedestrian pedestrian={person} />
@@ -42,7 +42,7 @@ describe("<Pedestrian />", () => {
   });
 
   it("is walking", async() => {
-    let person = create(Person, { activity: "walking" });
+    let person = create(Person).activity.walk();
 
     await mount(() => (
       <Pedestrian pedestrian={person} />

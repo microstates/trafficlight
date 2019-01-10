@@ -1,62 +1,23 @@
 import { create } from 'microstates';
+import Union from './union';
 
-class Activity {
-  initialize(value) {
-    switch(value) {
-      case 'running':
-        return create(Running, this);
-      case 'walking':
-        return create(Walking, this);
-      case 'standing':
-        return create(Standing, this);
-      default:
-        return this;
-    }
-  }
-
+const Activity = Union({
+  Walking: Activity => class extends Activity {},
+  Standing: Activity => class extends Activity {},
+  Running: Activity => class extends Activity {}
+}, class {
   stop() {
-    return this.set('standing');
+    return this.type.toStanding();
   }
-
   run() {
-    return this.set('running');
+    return this.type.toRunning();
   }
-
   walk() {
-    return this.set('walking');
+    return this.type.toWalking();
   }
-}
+});
 
-class Walking extends Activity {
-  get isWalking() {
-    return true;
-  }
-
-  initialize(value) {
-    return super.initialize(value);
-  }
-}
-
-class Standing extends Activity {
-  get isStanding() {
-    return true;
-  }
-
-  initialize(value) {
-    return super.initialize(value);
-  }
-}
-
-class Running extends Activity {
-  get isRunning() {
-    return true;
-  }
-
-  initialize(value) {
-    return super.initialize(value);
-  }
-}
 
 export default class Person {
-  activity = Activity;
+  activity = Activity.Standing.create();
 }

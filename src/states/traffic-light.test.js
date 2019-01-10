@@ -109,7 +109,7 @@ describe('Traffic Light State', () => {
         expect(color.isRed).toBe(true);
       });
       it('has red as value', () => {
-        expect(color.type).toEqual('Red');
+        expect(color.type.state).toEqual('Red');
       })
 
       describe('change transition', () => {
@@ -120,7 +120,7 @@ describe('Traffic Light State', () => {
           expect(color.isGreen).toBe(true);
         });
         it('has green as value', () => {
-          expect(color.type).toBe('Green');
+          expect(color.type.state).toBe('Green');
         });
       });
     });
@@ -133,7 +133,7 @@ describe('Traffic Light State', () => {
         expect(color.isGreen).toBe(true);
       });
       it('has green as value', () => {
-        expect(color.type).toBe('Green');
+        expect(color.type.state).toBe('Green');
       });
       describe('change transition', () => {
         beforeEach(() => {
@@ -143,7 +143,7 @@ describe('Traffic Light State', () => {
           expect(color.isYellow).toBe(true);
         });
         it('has yellow as value', () => {
-          expect(color.type).toBe('Yellow');
+          expect(color.type.state).toBe('Yellow');
         });
       });
     });
@@ -156,7 +156,7 @@ describe('Traffic Light State', () => {
         expect(color.isYellow).toBe(true);
       });
       it('has yellow as value', () => {
-        expect(color.type).toBe('Yellow');
+        expect(color.type.state).toBe('Yellow');
       });
       describe('change transition', () => {
         beforeEach(() => {
@@ -166,7 +166,7 @@ describe('Traffic Light State', () => {
           expect(color.isRed).toBe(true);
         });
         it('has red as value', () => {
-          expect(color.type).toBe('Red');
+          expect(color.type.state).toBe('Red');
         });
       });
     });

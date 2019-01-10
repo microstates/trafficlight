@@ -9,17 +9,17 @@ const SHORT_TIME = 5;
 export const Color = Union({
   Red: Color => class extends Color {
     change() {
-      return Color.Green.create();
+      return this.type.toGreen();
     }
   },
   Yellow: Color => class extends Color {
     change() {
-      return Color.Red.create();
+      return this.type.toRed();
     }
   },
   Green: Color => class extends Color {
     change() {
-      return Color.Yellow.create();
+      return this.type.toYellow();
     }
   }
 });

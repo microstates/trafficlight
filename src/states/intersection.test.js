@@ -32,7 +32,7 @@ describe("Intersection State", () => {
     beforeEach(() => {
       intersection = create(Intersection, {
         light: { color: { type: "Yellow" }, timer: 3 },
-        pedestrian: { activity: "walking" }
+        pedestrian: { activity: { type: "Walking" } }
       }).tick();
     });
     it('has yellow light', () => {
@@ -50,7 +50,7 @@ describe("Intersection State", () => {
     beforeEach(() => {
       intersection = create(Intersection, {
         light: { color: { type: 'Red' }, timer: 3 },
-        pedestrian: { activity: 'running' }
+        pedestrian: { activity: { type: 'Running' } }
       }).tick();
     });
     it('has red light', () => {

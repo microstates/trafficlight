@@ -3,17 +3,17 @@ import { create, valueOf } from 'microstates';
 
 describe('Using a union type to construct a Maybe value', ()=> {
   function Maybe(Type) {
-    return Union({
+    let MaybeType = Union({
       Just: Maybe => class extends Maybe {
         value = Type;
-
-        disintegrate() {
-          return Maybe.Nothing.create();
-        }
-
       },
       Nothing: Maybe => class extends Maybe {}
+    }, class Maybe {
+      disintegrate() {
+        return MaybeType.Nothing.create()
+      }
     });
+    return MaybeType;
   }
 
   let Type;
@@ -59,6 +59,9 @@ describe('Using a union type to construct a Maybe value', ()=> {
     it('it has as its value, an instance of Number', ()=> {
       expect(just.value.state).toEqual(5);
     });
+    it('has the type string available on the type attribute', ()=> {
+      expect(just.type.state).toEqual('Just');
+    });
 
     describe('transitioning the value', ()=> {
       let next;
@@ -85,4 +88,32 @@ describe('Using a union type to construct a Maybe value', ()=> {
     })
   });
 
+  describe('transitioning from one type to the next', ()=> {
+    let maybe;
+    beforeEach(()=> {
+      let { Just } = Type;
+      maybe = Just.create(5).type.toNothing();
+    });
+
+    it('takes on the transitioned type', ()=> {
+      expect(maybe).toBeInstanceOf(Type.Nothing);
+    });
+  });
+
+  describe('transitioning from one type to the next and then back again', ()=> {
+    it('remains of the correct type.', ()=> {
+      expect(Type.Just.create(5).type.toNothing().type.toJust()).toBeInstanceOf(Type.Just);
+    });
+    it('retains its value', ()=> {
+      expect(Type.Just.create(5).type.toNothing().type.toJust().value.state).toEqual(5);
+
+    });
+  });
+
+  describe('transitioning from the same type', ()=> {
+    it('is a no-oop', ()=> {
+      let just = Type.Just.create();
+      expect(just.type.toJust()).toBe(just);
+    });
+  });
 });
