@@ -7,7 +7,7 @@ import IntersectionState from '../states/intersection';
 export default class App extends React.Component {
   static defaultProps = {
     initial: create(IntersectionState, {
-      light: { color: "red", timer: 1 }
+      light: { color: { type: "Red" }, timer: 1 }
     })
   }
 

@@ -8,24 +8,20 @@ describe('Person state', () => {
 
       let person;
       beforeEach(() => {
-        person = create(Person, { activity: 'standing'});
+        person = create(Person, { activity: { type: 'Standing' } });
       });
-  
+
       it('initializes to standing without initial value', () => {
         expect(person.activity.isStanding).toBe(true);
       });
-  
+
       describe('walk transition', () => {
         beforeEach(() => {
           person = person.activity.walk();
         });
-  
+
         it('is walking', () => {
           expect(person.activity.isWalking).toBe(true);
-        });
-  
-        it('has value of walking', () => {
-          expect(valueOf(person.activity)).toBe('walking');
         });
       });
 
@@ -37,19 +33,15 @@ describe('Person state', () => {
         it('is running', () => {
           expect(person.activity.isRunning).toBe(true)
         });
-
-        it('has value of running', () => {
-          expect(valueOf(person.activity)).toBe('running');
-        });
       });
-  
+
     });
-  
+
     describe('Walking state', () => {
 
       let person;
       beforeEach(() => {
-        person = create(Person, { activity: 'walking' });
+        person = create(Person, { activity: { type: 'Walking'  } });
       });
 
       it('initializes to walking when activitiy value is walking', () => {
@@ -64,10 +56,6 @@ describe('Person state', () => {
         it('is standing', () => {
           expect(person.activity.isStanding).toBe(true);
         });
-
-        it('has value of standing', () => {
-          expect(valueOf(person.activity)).toBe('standing');
-        });
       });
 
       describe('run transition', () => {
@@ -78,17 +66,13 @@ describe('Person state', () => {
         it('is running', () => {
           expect(person.activity.isRunning).toBe(true)
         });
-
-        it('has value of running', () => {
-          expect(valueOf(person.activity)).toBe('running');
-        });
       });
     });
 
     describe('Running state', () => {
       let person;
       beforeEach(() => {
-        person = create(Person, { activity: 'running' });
+        person = create(Person, { activity: { type: 'Running' } });
       });
 
       it('initializes into running state when value is running', () => {
@@ -99,13 +83,9 @@ describe('Person state', () => {
         beforeEach(() => {
           person = person.activity.walk();
         });
-  
+
         it('is walking', () => {
           expect(person.activity.isWalking).toBe(true);
-        });
-  
-        it('has value of walking', () => {
-          expect(valueOf(person.activity)).toBe('walking');
         });
       });
 
@@ -117,15 +97,7 @@ describe('Person state', () => {
         it('is standing', () => {
           expect(person.activity.isStanding).toBe(true);
         });
-
-        it('has value of standing', () => {
-          expect(valueOf(person.activity)).toBe('standing');
-        });
       });
-
     });
   });
-
-
-
 });

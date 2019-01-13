@@ -7,7 +7,7 @@ describe('Traffic Light State', () => {
   describe('cycle transition', () => {
     describe('from green', () => {
       beforeEach(() => {
-        light = create(TrafficLight, { color: 'green', timer: 1 }).cycle();
+        light = create(TrafficLight, { color: { type: 'Green' }, timer: 1 }).cycle();
       });
       it('transitions to yellow', () => {
         expect(light.color.isYellow).toBe(true);
@@ -16,10 +16,10 @@ describe('Traffic Light State', () => {
         expect(light.timer.state).toBe(5);
       });
     });
-    
+
     describe('from red', () => {
       beforeEach(() => {
-        light = create(TrafficLight, { color: 'red', timer: 1 }).cycle();
+        light = create(TrafficLight, { color: { type: 'Red' }, timer: 1 }).cycle();
       });
       it('transitions to green', () => {
         expect(light.color.isGreen).toBe(true);
@@ -30,7 +30,7 @@ describe('Traffic Light State', () => {
     });
     describe('from yellow', () => {
       beforeEach(() => {
-        light = create(TrafficLight, { color: 'yellow', timer: 1 }).cycle();
+        light = create(TrafficLight, { color: {type: 'Yellow' }, timer: 1 }).cycle();
       });
       it('transitions to red', () => {
         expect(light.color.isRed).toBe(true);
@@ -58,13 +58,13 @@ describe('Traffic Light State', () => {
   describe('with color but without timer', () => {
     describe('when color is red', () => {
       beforeEach(() => {
-        light = create(TrafficLight, { color: 'red' });
+        light = create(TrafficLight, { color: { type: 'Red' } });
       });
-  
+
       it('initializes into red', () => {
         expect(light.color.isRed).toBe(true);
       });
-  
+
       it('initializes timer to 15', () => {
         expect(light.timer.state).toBe(15);
       });
@@ -72,13 +72,13 @@ describe('Traffic Light State', () => {
 
     describe('when color is green', () => {
       beforeEach(() => {
-        light = create(TrafficLight, { color: 'green' });
+        light = create(TrafficLight, { color: { type: 'Green' } });
       });
 
       it('initializes into green', () => {
         expect(light.color.isGreen).toBe(true);
       });
-  
+
       it('initializes timer to 15', () => {
         expect(light.timer.state).toBe(15);
       });
@@ -86,13 +86,13 @@ describe('Traffic Light State', () => {
 
     describe('when color is yellow', () => {
       beforeEach(() => {
-        light = create(TrafficLight, { color: 'yellow' });
+        light = create(TrafficLight, { color: { type: 'Yellow' } });
       });
 
       it('initializes into yellow', () => {
         expect(light.color.isYellow).toBe(true);
       });
-  
+
       it('initializes timer to 5', () => {
         expect(light.timer.state).toBe(5);
       });
@@ -103,15 +103,15 @@ describe('Traffic Light State', () => {
     let color;
     describe('Red state', () => {
       beforeEach(() => {
-        color = create(Color, 'red');
+        color = Color.Red.create();
       });
       it('initializes into red', () => {
         expect(color.isRed).toBe(true);
       });
       it('has red as value', () => {
-        expect(valueOf(color)).toBe('red');
+        expect(color.type.state).toEqual('Red');
       })
-  
+
       describe('change transition', () => {
         beforeEach(() => {
           color = color.change();
@@ -120,20 +120,20 @@ describe('Traffic Light State', () => {
           expect(color.isGreen).toBe(true);
         });
         it('has green as value', () => {
-          expect(valueOf(color)).toBe('green');
+          expect(color.type.state).toBe('Green');
         });
       });
     });
 
     describe('Green state', () => {
       beforeEach(() => {
-        color = create(Color, 'green');
+        color = Color.Green.create();
       });
       it('initializes to green', () => {
         expect(color.isGreen).toBe(true);
       });
       it('has green as value', () => {
-        expect(valueOf(color)).toBe('green');
+        expect(color.type.state).toBe('Green');
       });
       describe('change transition', () => {
         beforeEach(() => {
@@ -143,20 +143,20 @@ describe('Traffic Light State', () => {
           expect(color.isYellow).toBe(true);
         });
         it('has yellow as value', () => {
-          expect(valueOf(color)).toBe('yellow');
+          expect(color.type.state).toBe('Yellow');
         });
       });
     });
 
     describe('Yellow state', () => {
       beforeEach(() => {
-        color = create(Color, 'yellow');
+        color = Color.Yellow.create();
       });
       it('initializes to yellow', () => {
         expect(color.isYellow).toBe(true);
       });
       it('has yellow as value', () => {
-        expect(valueOf(color)).toBe('yellow');
+        expect(color.type.state).toBe('Yellow');
       });
       describe('change transition', () => {
         beforeEach(() => {
@@ -166,11 +166,9 @@ describe('Traffic Light State', () => {
           expect(color.isRed).toBe(true);
         });
         it('has red as value', () => {
-          expect(valueOf(color)).toBe('red');
+          expect(color.type.state).toBe('Red');
         });
       });
     });
   });
-
-
 });

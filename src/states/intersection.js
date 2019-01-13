@@ -19,11 +19,11 @@ export default class Intersection {
     if (color.isGreen) {
       return activity.walk();
     }
-    
+
     if (color.isYellow) {
       return activity.run();
     }
-    
+
     return activity.stop();
   }
 

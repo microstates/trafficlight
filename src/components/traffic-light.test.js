@@ -19,29 +19,29 @@ export const TrafficLightInteractor = Interactor.extend(
 describe('<TrafficLight />', () => {
   let interactor = new TrafficLightInteractor();
 
-  it('is green', async () => {  
-    let light = create(State, { color: 'green' });
+  it('is green', async () => {
+    let light = create(State, { color: { type: 'Green' } });
     await mount(() => <TrafficLight light={light} />);
 
     expect(interactor.isGreen).toBe(true);
   });
 
   it('is red', async () => {
-    let light = create(State, { color: 'red' });
+    let light = create(State, { color: { type: 'Red' } });
     await mount(() => <TrafficLight light={light} />);
 
     expect(interactor.isRed).toBe(true);
   });
 
   it('is yellow', async () => {
-    let light = create(State, { color: 'yellow' });
+    let light = create(State, { color: {type: 'Yellow' }});
     await mount(() => <TrafficLight light={light} />);
 
     expect(interactor.isYellow).toBe(true);
   });
 
-  it('is green', async () => {  
-    let light = create(State, { color: 'green', timer: 6 });
+  it('is green', async () => {
+    let light = create(State, { color: { type: 'Green' }, timer: 6 });
     await mount(() => <TrafficLight light={light} />);
 
     expect(interactor.isBlinking).toBe(true);
