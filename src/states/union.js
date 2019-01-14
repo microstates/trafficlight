@@ -1,6 +1,6 @@
 import { create, valueOf, Primitive } from 'microstates';
 
-export default function Union(members, Base = Object) {
+export default function Union(members, Base = class {}) {
   let types = Object.keys(members);
 
   let UnionType = class extends Base {
@@ -48,7 +48,7 @@ export default function Union(members, Base = Object) {
       value: type
     });
     Constructor.create = (value) => {
-      return create(UnionType, { type, value });
+      return create(Constructor, { type, value });
     };
     UnionType[type] = Constructor;
   });
