@@ -1,4 +1,3 @@
-import { create } from 'microstates';
 import Union from './union';
 
 const Activity = Union({
