@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/microstates/trafficlight.svg?branch=master)](https://travis-ci.com/microstates/trafficlight) [![Coverage Status](https://coveralls.io/repos/github/microstates/trafficlight/badge.svg?branch=master)](https://coveralls.io/github/microstates/trafficlight?branch=master) [![Created by The Frontside](https://img.shields.io/badge/created%20by-frontside.io-blue.svg)](https://frontside.io)
+[![Build Status](https://travis-ci.com/microstates/trafficlight.svg?branch=master)](https://travis-ci.com/microstates/trafficlight) [![Coverage Status](https://coveralls.io/repos/github/microstates/trafficlight/badge.svg?branch=master)](https://coveralls.io/github/microstates/trafficlight?branch=master) [![Created by The Frontside](https://img.shields.io/badge/created%20by-frontside.io-blue.svg)](https://frontside.io) [![Chat on Discord](https://img.shields.io/discord/556202291586269214.svg)](http://bit.ly/microstates-discord)
+
 
 # Traffic Light State Machine with Microstates
 
